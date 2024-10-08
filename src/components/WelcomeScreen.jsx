@@ -68,6 +68,7 @@ const WelcomeScreen = ({ onProceed }) => {
       button: 'Ver el Menú',
       address: 'Nos encontramos en la Calle 12 # 5-45, Neiva, Huila, Colombia.',
       followUs: 'Síguenos en:',
+      whatsapp: 'Para pedidos',
     },
     en: {
       welcome: 'Welcome to Cata Café!',
@@ -75,6 +76,7 @@ const WelcomeScreen = ({ onProceed }) => {
       button: 'View the Menu',
       address: 'We are located at Calle 12 # 5-45, Neiva, Huila, Colombia.',
       followUs: 'Follow us on:',
+      whatsapp: 'For orders',
     },
   };
 
@@ -152,7 +154,7 @@ const WelcomeScreen = ({ onProceed }) => {
           className="whatsapp-button"
           variants={footerItemVariants}  // Animación para el botón de WhatsApp
         >
-          <FontAwesomeIcon icon={faWhatsapp} /> Para pedidos
+          <FontAwesomeIcon icon={faWhatsapp} /> {texts[language].whatsapp}
         </motion.a>
 
         <motion.p

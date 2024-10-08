@@ -122,7 +122,7 @@ const menuData = {
           { name: 'Irish Cappuccino', price: 7000 },
           { name: 'Café Latte', price: 7000 },
           { name: 'Espresso', price: 4500 },
-          { name: 'Americano', price: 5500 },
+          { name: 'American', price: 5500 },
           { name: 'Carajillo', price: 7000 },
           { name: 'Mocaccino', price: 7000 },
           { name: 'Chai Latte', price: 7000 },
@@ -142,7 +142,7 @@ const menuData = {
       {
         section: 'Other Drinks',
         items: [
-          { name: 'Cocacola', price: 4500 },
+          { name: 'Coke', price: 4500 },
           { name: 'Ginger', price: 4000 },
           { name: 'Still Water', price: 3500 },
           { name: 'Sparkling Water', price: 4000 },
@@ -213,6 +213,17 @@ const menuData = {
   };
   
 
+  const footerTexts = {
+    es: {
+      madeBy: 'Hecho por Luis Emilio Rojas',
+      contact: 'Contacta conmigo en WhatsApp',
+    },
+    en: {
+      madeBy: 'Made by Luis Emilio Rojas',
+      contact: 'Contact me on WhatsApp',
+    },
+  };
+  
   const Menu = () => {
     const [language, setLanguage] = useState('es');  // Estado para el idioma (español por defecto)
   
@@ -241,10 +252,10 @@ const menuData = {
   
         {/* Footer con el enlace de WhatsApp */}
         <div className="footer-container">
-          <p>Hecho por Luis Emilio Rojas</p>
+          <p>{footerTexts[language].madeBy}</p>
           <a href="https://wa.me/573187757620" className="whatsapp-link" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faWhatsapp} size="2x" className="whatsapp-icon" />
-            Contacta conmigo en WhatsApp
+            {footerTexts[language].contact}
           </a>
         </div>
       </div>
