@@ -10,14 +10,33 @@
   color: #f0f0f0;
   text-align: center;
   position: relative;
-  padding-top: 80px; /* Aumentamos el espacio superior */
+  padding-top: 20px;
+}
+
+/* Botón para cambiar de idioma en la esquina superior izquierda */
+.welcome-language-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.5);  /* Fondo translúcido */
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.welcome-language-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);  /* Color más oscuro al hacer hover */
 }
 
 /* Estilo para el logo */
 .welcome-logo {
-  width: 300px;  /* Hacemos el logo más grande */
-  margin-top: 1rem;  /* Ajustamos el margen superior */
-  margin-bottom: 1.5rem;  /* Espacio inferior */
+  width: 300px;  
+  margin-top: 1rem;  
+  margin-bottom: 1.5rem;  
 }
 
 /* Estilo del texto principal */
@@ -25,10 +44,10 @@
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  background: rgba(0, 0, 0, 0.6);  /* Fondo translúcido oscuro */
+  background: rgba(0, 0, 0, 0.6);  
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  color: #ffffff;  /* Color de texto blanco puro */
+  color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -37,72 +56,103 @@
     font-size: 1.2rem;
     margin-bottom: 2rem;
     padding: 1rem;
-    background: rgba(0, 0, 0, 0.5);  /* Fondo translúcido oscuro */
+    background: rgba(0, 0, 0, 0.5);  
     border-radius: 8px;
-    color: #ffffff;  /* Color de texto blanco puro */
+    color: #ffffff;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-    font-style: italic; /* Hace el texto cursiva */
-    quotes: "“" "”" "‘" "’"; /* Definimos las comillas */
-  }
-  .welcome-subtext::before {
-    content: open-quote; /* Comillas de apertura */
-    font-size: 1.5rem;
-    margin-right: 5px;
-  }
-  
-  .welcome-subtext::after {
-    content: close-quote; /* Comillas de cierre */
-    font-size: 1.5rem;
-    margin-left: 5px;
-  }
-/* Estilo de los botones */
-.button {
-  background-color: #2a7f62;
-  color: #fff;
+    font-style: italic;
+}
+
+/* Botón para ver el menú */
+.welcome-menu-button {
+  background: rgba(0, 0, 0, 0.5);  /* Fondo translúcido */
+  color: white;
   padding: 1rem 2rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1.2rem;
-  margin-top: 10px; /* Espacio entre botones */
+  margin-top: 10px;
 }
 
-.button:hover {
-  background-color: #1e5c48;
+.welcome-menu-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);  /* Color más oscuro al hacer hover */
 }
 
-/* Botón de idioma con estilo adicional */
-.language-button {
-  background-color: #2a7f62;
+/* Footer y estilo de la dirección con fondo translúcido */
+.welcome-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.address-text {
+  background: rgba(0, 0, 0, 0.6); 
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #ffffff;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+/* Estilo del botón de WhatsApp */
+.whatsapp-button {
+  display: inline-block;
+  background-color: #25d366;
   color: white;
-  padding: 0.8rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #20b85c;
+}
+
+/* Redes sociales */
+.social-icons {
   margin-top: 1rem;
 }
 
-.language-button:hover {
-  background-color: #1e5c48;
+.social-icon {
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.facebook {
+  color: #1877f2;  /* Color original de Facebook */
+}
+
+.instagram {
+  color: #e4405f;  /* Color original de Instagram */
+}
+
+.social-icon:hover {
+  opacity: 0.7;  /* Efecto hover para los íconos */
 }
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
   .welcome-logo {
-    width: 250px;  /* Ajustamos el tamaño del logo en móviles */
+    width: 250px;  
   }
 
   .welcome-text {
-    font-size: 2rem;  /* Reducimos el tamaño del texto principal en móviles */
+    font-size: 2rem;  
   }
 
   .welcome-subtext {
-    font-size: 1.1rem;  /* Reducimos el tamaño del subtexto en móviles */
+    font-size: 1.1rem;
   }
 
-  .button {
-    padding: 0.8rem 1.5rem;  /* Botón más pequeño en móviles */
-    font-size: 1rem;  /* Ajustamos la fuente en móviles */
+  .welcome-menu-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;  
+  }
+
+  .social-icon {
+    font-size: 1.5rem;  
   }
 }
