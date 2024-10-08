@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import './WelcomeScreen.css';
 import backgroundImage from '../assets/background.png';  // Importamos la imagen
@@ -42,6 +42,27 @@ const buttonVariants = {
 };
 
 const WelcomeScreen = ({ onProceed }) => {
+  const [language, setLanguage] = useState('es');  // Estado para manejar el idioma
+
+  // Textos en ambos idiomas
+  const texts = {
+    es: {
+      welcome: '¡Bienvenido a Cata Café!',
+      subtext: 'Donde cada taza de café cuenta una historia. Relájate, disfruta y descubre nuestras especialidades preparadas con pasión.',
+      button: 'Ver el Menú',
+    },
+    en: {
+      welcome: 'Welcome to Cata Café!',
+      subtext: 'Where every cup of coffee tells a story. Relax, enjoy, and discover our specialties crafted with passion.',
+      button: 'View the Menu',
+    },
+  };
+
+  // Función para alternar el idioma
+  const toggleLanguage = () => {
+    setLanguage(language === 'es' ? 'en' : 'es');
+  };
+
   return (
     <motion.div
       className="welcome-container"
@@ -50,22 +71,22 @@ const WelcomeScreen = ({ onProceed }) => {
       initial="hidden"
       animate="visible"
     >
-      {/* Logo de Cata Café con la nueva clase "welcome-logo" */}
+      {/* Logo de Cata Café con la clase "welcome-logo" */}
       <motion.img 
         src="/assets/logo.png" 
         alt="Cata Café Logo" 
-        className="welcome-logo"  /* Actualizamos la clase aquí */
+        className="welcome-logo"  /* Usamos la nueva clase aquí */
         variants={logoVariants}
       />
       
       {/* Mensaje de bienvenida */}
       <motion.h1 className="welcome-text" variants={textVariants}>
-        ¡Bienvenido a Cata Café!
+        {texts[language].welcome}
       </motion.h1>
 
       {/* Subtexto */}
       <motion.p className="welcome-subtext" variants={textVariants} transition={{ delay: 2 }}>
-        Donde cada taza de café cuenta una historia. Relájate, disfruta y descubre nuestras especialidades preparadas con pasión.
+        {texts[language].subtext}
       </motion.p>
 
       {/* Botón para ver el menú */}
@@ -76,7 +97,18 @@ const WelcomeScreen = ({ onProceed }) => {
         whileTap={{ scale: 0.9 }}
         onClick={onProceed}
       >
-        Ver el Menú
+        {texts[language].button}
+      </motion.button>
+
+      {/* Botón para cambiar de idioma */}
+      <motion.button
+        className="button language-button"  /* Añadimos clase extra para este botón */
+        variants={buttonVariants}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={toggleLanguage}  // Cambiamos el idioma al hacer clic
+      >
+        {language === 'es' ? 'English' : 'Español'}
       </motion.button>
     </motion.div>
   );
