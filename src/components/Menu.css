@@ -1,0 +1,120 @@
+/* Contenedor principal del menú */
+.menu-container {
+    background-image: url('../assets/backgroundmenu.png'); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    padding-top: 120px; /* Añadimos un padding superior para evitar que el contenido se superponga al header */
+  }
+  
+  /* Header fijo para el logo, el título y el botón de idioma */
+  .menu-header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    padding: 10px 20px;  /* Aumentamos el padding */
+    display: flex;
+    justify-content: space-between; /* Distribuye el logo, el título y el botón de idioma */
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Añade una sombra sutil al header */
+  }
+  
+  /* Estilo para el logo */
+  .logo {
+    width: 120px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  /* Estilo para el título "Menú" centrado */
+  .menu-header {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2a7f62; /* Color del texto verde */
+    text-align: center;
+    flex-grow: 1; /* Hace que el título ocupe el espacio disponible */
+    margin-left: -46px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Estilo del botón de idioma */
+  .language-button {
+    background-color: #2a7f62; /* Botón en color verde oscuro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px; /* Botón redondeado */
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* Empuja el botón hacia la derecha */
+    margin-right: 10px; /* Agregamos un margen derecho para que no quede al borde */
+  }
+  
+  .language-button:hover {
+    background-color: #1e5c48; /* Color más oscuro en hover */
+  }
+  
+  .language-button:focus {
+    outline: none; /* Remueve el borde por defecto cuando está enfocado */
+  }
+  
+  /* Estilos responsivos para móviles */
+  @media (max-width: 768px) {
+    .menu-container {
+      padding: 1rem;
+      padding-top: 150px; /* Ajustamos el margen superior en móviles */
+    }
+  
+    .logo {
+      width: 100px; /* Ajustamos el tamaño del logo en dispositivos móviles */
+    }
+  
+    .menu-header {
+      font-size: 1.8rem; /* Reducimos el tamaño del título en móviles */
+    }
+  
+    .language-button {
+      padding: 8px 16px; /* Botón más pequeño en móviles */
+      font-size: 0.9rem;  /* Fuente del botón más pequeña */
+      margin-right: 30px; /* Espacio suficiente para el botón en móviles */
+    }
+  }
+  .whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #25D366; /* Color verde de WhatsApp */
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.whatsapp-link:hover {
+    color: #128C7E; /* Color más oscuro en hover */
+}
+
+.whatsapp-icon {
+    margin-right: 10px;
+}
+
+.footer-container p {
+    margin: 0;
+    font-size: 1rem;
+    color: #2a7f62;
+}
+.footer-container {
+    text-align: center;
+   
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}

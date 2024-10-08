@@ -1,0 +1,108 @@
+/* Contenedor principal de bienvenida */
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  color: #f0f0f0;
+  text-align: center;
+  position: relative;
+  padding-top: 80px; /* Aumentamos el espacio superior */
+}
+
+/* Estilo para el logo */
+.welcome-logo {
+  width: 300px;  /* Hacemos el logo más grande */
+  margin-top: 1rem;  /* Ajustamos el margen superior */
+  margin-bottom: 1.5rem;  /* Espacio inferior */
+}
+
+/* Estilo del texto principal */
+.welcome-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);  /* Fondo translúcido oscuro */
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: #ffffff;  /* Color de texto blanco puro */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Estilo del subtexto */
+.welcome-subtext {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);  /* Fondo translúcido oscuro */
+    border-radius: 8px;
+    color: #ffffff;  /* Color de texto blanco puro */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    font-style: italic; /* Hace el texto cursiva */
+    quotes: "“" "”" "‘" "’"; /* Definimos las comillas */
+  }
+  .welcome-subtext::before {
+    content: open-quote; /* Comillas de apertura */
+    font-size: 1.5rem;
+    margin-right: 5px;
+  }
+  
+  .welcome-subtext::after {
+    content: close-quote; /* Comillas de cierre */
+    font-size: 1.5rem;
+    margin-left: 5px;
+  }
+/* Estilo de los botones */
+.button {
+  background-color: #2a7f62;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-top: 10px; /* Espacio entre botones */
+}
+
+.button:hover {
+  background-color: #1e5c48;
+}
+
+/* Botón de idioma con estilo adicional */
+.language-button {
+  background-color: #2a7f62;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.language-button:hover {
+  background-color: #1e5c48;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .welcome-logo {
+    width: 250px;  /* Ajustamos el tamaño del logo en móviles */
+  }
+
+  .welcome-text {
+    font-size: 2rem;  /* Reducimos el tamaño del texto principal en móviles */
+  }
+
+  .welcome-subtext {
+    font-size: 1.1rem;  /* Reducimos el tamaño del subtexto en móviles */
+  }
+
+  .button {
+    padding: 0.8rem 1.5rem;  /* Botón más pequeño en móviles */
+    font-size: 1rem;  /* Ajustamos la fuente en móviles */
+  }
+}
