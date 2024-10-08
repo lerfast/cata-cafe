@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import './WelcomeScreen.css';
-import backgroundImage from '../assets/background.png';  // Importamos la imagen
+import backgroundImage from '../assets/background.png';  // Importamos la imagen de fondo
+import logo from '../assets/logo.png';  // Importamos correctamente el logo
 
 // Variantes para las animaciones
 const containerVariants = {
@@ -19,7 +20,7 @@ const logoVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: 'spring', stiffness: 50, duration: 1, delay: 1.6 },  // Logo aparece después del fondo
+    transition: { type: 'spring', stiffness: 50, duration: 1, delay: 1.2 },  // Logo aparece después del fondo
   },
 };
 
@@ -28,7 +29,7 @@ const textVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1.2, delay: 1.8 },  // Aparece después del logo
+    transition: { duration: 1.2, delay: 1.4 },  // Aparece después del logo
   },
 };
 
@@ -37,7 +38,7 @@ const buttonVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 1, delay: 2.2 },  // Botón aparece al final
+    transition: { duration: 1, delay: 1.8 },  // Botón aparece al final
   },
 };
 
@@ -73,9 +74,9 @@ const WelcomeScreen = ({ onProceed }) => {
     >
       {/* Logo de Cata Café con la clase "welcome-logo" */}
       <motion.img 
-        src="/assets/logo.png" 
+        src={logo}  // Usamos la variable importada "logo" para que Webpack maneje la ruta correctamente
         alt="Cata Café Logo" 
-        className="welcome-logo"  /* Usamos la nueva clase aquí */
+        className="welcome-logo"  // Usamos la nueva clase aquí
         variants={logoVariants}
       />
       
@@ -102,7 +103,7 @@ const WelcomeScreen = ({ onProceed }) => {
 
       {/* Botón para cambiar de idioma */}
       <motion.button
-        className="button language-button"  /* Añadimos clase extra para este botón */
+        className="button language-button"  // Añadimos clase extra para este botón
         variants={buttonVariants}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
