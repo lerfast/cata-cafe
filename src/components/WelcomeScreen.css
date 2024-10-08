@@ -1,0 +1,80 @@
+/* Contenedor principal de la pantalla de bienvenida */
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../assets/background.png'); /* Imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para cubrir el fondo sin hacer zoom */
+    background-position: center; /* Centra la imagen de fondo */
+    background-attachment: fixed; /* La imagen de fondo se mantiene fija al hacer scroll */
+    color: #f0f0f0;
+    text-align: center;
+    position: relative;
+  }
+  
+  /* Estilos para el logo en la pantalla de bienvenida */
+  .welcome-logo {
+    width: 300px;  /* Hacemos el logo más grande */
+    margin-top: 2rem;  /* Espacio superior */
+    margin-bottom: 1.5rem;  /* Espacio inferior */
+  }
+  
+  /* Texto de bienvenida */
+  .welcome-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    background: rgba(0, 0, 0, 0.6);  /* Fondo translúcido oscuro */
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: #ffffff;  /* Color de texto blanco puro */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Subtexto de bienvenida */
+  .welcome-subtext {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);  /* Fondo translúcido oscuro */
+    border-radius: 8px;
+    color: #ffffff;  /* Color de texto blanco puro */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Estilo del botón */
+  .button {
+    background-color: #2a7f62;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  
+  .button:hover {
+    background-color: #1e5c48;
+  }
+  
+  /* Estilos responsivos para móviles */
+  @media (max-width: 768px) {
+    .welcome-container {
+      padding: 1rem;
+    }
+  
+    .welcome-logo {
+      width: 300px; /* Ajustamos el tamaño del logo en dispositivos móviles */
+    }
+  
+    .welcome-text {
+      font-size: 2rem; /* Reducimos el tamaño del texto en móviles */
+    }
+  
+    .welcome-subtext {
+      font-size: 1rem; /* Reducimos el tamaño del subtexto en móviles */
+    }
+  }
+  
