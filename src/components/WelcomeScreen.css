@@ -34,10 +34,15 @@
 
 /* Estilo para el logo */
 .welcome-logo {
-  width: 300px;  
-  margin-top: 1rem;  
-  margin-bottom: 1.5rem;  
+  width: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  background: rgba(220, 219, 219, 0.5);  /* Fondo translúcido */
+  padding: 1rem;  /* Añadimos relleno alrededor del logo */
+  border-radius: 8px;  /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  /* Sombra suave */
 }
+
 
 /* Estilo del texto principal */
 .welcome-text {
@@ -49,34 +54,41 @@
   border-radius: 8px;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  display: inline-block;  /* El fondo ahora se ajusta solo al texto */
 }
 
 /* Estilo del subtexto */
 .welcome-subtext {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.5);  
-    border-radius: 8px;
-    color: #ffffff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-    font-style: italic;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  font-style: italic;
+  display: inline-block;
+  max-width: 80%;  /* Limitar el ancho máximo del texto */
+  text-align: center;  /* Centrar el texto */
 }
 
 /* Botón para ver el menú */
 .welcome-menu-button {
-  background: rgba(0, 0, 0, 0.5);  /* Fondo translúcido */
+  background: rgba(0, 0, 0, 0.6);  /* Fondo translúcido con más opacidad */
   color: white;
   padding: 1rem 2rem;
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.7);  /* Borde blanco translúcido */
   border-radius: 5px;
   cursor: pointer;
   font-size: 1.2rem;
   margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  /* Sombra suave */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;  /* Transiciones suaves */
 }
 
 .welcome-menu-button:hover {
   background-color: rgba(0, 0, 0, 0.8);  /* Color más oscuro al hacer hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);  /* Aumentar sombra en hover */
 }
 
 /* Footer y estilo de la dirección con fondo translúcido */
@@ -87,10 +99,12 @@
 
 .address-text {
   background: rgba(0, 0, 0, 0.6); 
-  padding: 10px 20px;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
   color: #ffffff;
   display: inline-block;
+  max-width: 80%;  /* Limitar el ancho máximo del texto */
+  text-align: center;  /* Centrar el texto */
   margin-bottom: 15px;
 }
 
