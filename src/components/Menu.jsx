@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion'; // Importamos motion para las animaciones
 import './Menu.css'; // Importamos el archivo CSS
 import MenuSection from './MenuSection';
 import logoImage from '../assets/logo.png'; // Importamos la imagen del logo
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importamos el componente de FontAwesome
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'; // Importamos el icono de WhatsApp
+import { faWhatsapp, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+
 
 
 // Datos del menú en ambos idiomas (actualizado con todos los elementos)
@@ -215,17 +217,30 @@ const menuData = {
 
   const footerTexts = {
     es: {
-      madeBy: 'Hecho por Luis Emilio Rojas',
-      contact: 'Contacta conmigo en WhatsApp',
+      madeBy: 'Desarrollado por Luis Emilio Rojas',
+      contact: '¿Quieres un sitio web como este? ¡Hablemos!',
     },
     en: {
-      madeBy: 'Made by Luis Emilio Rojas',
-      contact: 'Contact me on WhatsApp',
+      madeBy: 'Developed by Luis Emilio Rojas',
+      contact: "Want a website like this? Let's talk!",
+    },
+  };
+  
+  // Variantes para la animación del footer
+  const footerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        delay: 0.5,
+      },
     },
   };
   
   const Menu = () => {
-    const [language, setLanguage] = useState('es');  // Estado para el idioma (español por defecto)
+    const [language, setLanguage] = useState('es'); // Estado para el idioma (español por defecto)
   
     // Función para alternar el idioma
     const toggleLanguage = () => {
@@ -250,14 +265,32 @@ const menuData = {
           <MenuSection key={index} title={section.section} items={section.items} />
         ))}
   
-        {/* Footer con el enlace de WhatsApp */}
-        <div className="footer-container">
-          <p>{footerTexts[language].madeBy}</p>
-          <a href="https://wa.me/573187757620" className="whatsapp-link" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faWhatsapp} size="2x" className="whatsapp-icon" />
-            {footerTexts[language].contact}
-          </a>
-        </div>
+        {/* Footer mejorado con animaciones */}
+        <motion.footer
+          className="footer-container"
+          initial="hidden"
+          animate="visible"
+          variants={footerVariants}
+        >
+          <p className="footer-madeby">{footerTexts[language].madeBy}</p>
+          <p className="footer-contact">{footerTexts[language].contact}</p>
+          <motion.div
+            className="footer-icons"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 1 }}
+          >
+            <a href="https://wa.me/573187757620" className="whatsapp" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faWhatsapp} size="2x" />
+            </a>
+            <a href="https://www.linkedin.com/in/luisemiliorojas/" className="linkedin" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faLinkedin} size="2x" />
+            </a>
+            <a href="https://github.com/lerfast" className="github" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faGithub} size="2x" />
+            </a>
+          </motion.div>
+        </motion.footer>
       </div>
     );
   };

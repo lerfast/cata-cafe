@@ -4,12 +4,18 @@ import styled from 'styled-components';
 import MenuItem from './MenuItem';
 
 const SectionTitle = styled.h2`
-  margin: 2rem 0 1rem 0;
+  margin: 2rem auto 1rem auto;  /* Auto en los márgenes izquierda y derecha para centrar */
   font-size: 1.8rem;
   font-weight: bold;
   color: #2a7f62;
   text-align: center;
+  background: rgba(230, 228, 228, 0.6);
+  width: fit-content;  /* Asegura que el contenedor se ajuste al contenido */
+  padding: 0.5rem 1rem; /* Añade un padding para un mejor ajuste */
+  border-radius: 8px;   /* Bordes redondeados */
 `;
+
+
 
 const MenuSectionContainer = styled.div`
   margin-bottom: 2rem;
