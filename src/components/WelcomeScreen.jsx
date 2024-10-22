@@ -209,7 +209,7 @@ const WelcomeScreen = ({ onProceed }) => {
 
       {/* Contador de visitas */}
       <div className="visit-counter">
-        {`Visitas: ${visitCount}`}  {/* Mostramos el número de visitas */}
+        {`Welcome Visitor: ${visitCount}`}  {/* Mostramos el número de visitas */}
       </div>
     </motion.div>
   );
