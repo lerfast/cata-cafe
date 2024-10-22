@@ -43,7 +43,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  /* Sombra suave */
 }
 
-
 /* Estilo del texto principal */
 .welcome-text {
   font-size: 2.5rem;
@@ -145,6 +144,23 @@
 
 .social-icon:hover {
   opacity: 0.7;  /* Efecto hover para los íconos */
+}
+
+/* Estilo del contador de visitas */
+.visit-counter {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem; /* Tamaño pequeño del texto */
+  opacity: 0.5; /* Hacemos que el contador sea menos llamativo */
+}
+
+.visit-counter:hover {
+  opacity: 1; /* Al pasar el mouse, lo hacemos más visible */
 }
 
 /* Estilos responsivos */

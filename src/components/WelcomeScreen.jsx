@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';  // Importamos useRef
 import { motion } from 'framer-motion';
 import './WelcomeScreen.css';
 import backgroundImage from '../assets/background.png';  // Importamos la imagen de fondo
@@ -59,6 +59,32 @@ const footerItemVariants = {
 
 const WelcomeScreen = ({ onProceed }) => {
   const [language, setLanguage] = useState('es');  // Estado para manejar el idioma
+  const [visitCount, setVisitCount] = useState(0);  // Estado para el contador de visitas
+  const hasIncremented = useRef(false);  // Usamos useRef para evitar incrementos múltiples
+
+  useEffect(() => {
+    if (!hasIncremented.current) {  // Verificamos si ya hemos incrementado
+      const incrementVisitCount = () => {
+        const visits = localStorage.getItem('visitCount');
+        if (visits) {
+          const newVisitCount = parseInt(visits) + 1;
+          setVisitCount(newVisitCount);
+          localStorage.setItem('visitCount', newVisitCount);
+        } else {
+          setVisitCount(1);
+          localStorage.setItem('visitCount', 1);
+        }
+      };
+
+      incrementVisitCount();
+      hasIncremented.current = true;  // Marcamos que ya hemos incrementado
+    }
+  }, []); // El array vacío asegura que se ejecute solo una vez
+
+  // Función para alternar el idioma
+  const toggleLanguage = () => {
+    setLanguage(language === 'es' ? 'en' : 'es');
+  };
 
   // Textos en ambos idiomas
   const texts = {
@@ -78,11 +104,6 @@ const WelcomeScreen = ({ onProceed }) => {
       followUs: 'Follow us on:',
       whatsapp: 'For orders',
     },
-  };
-
-  // Función para alternar el idioma
-  const toggleLanguage = () => {
-    setLanguage(language === 'es' ? 'en' : 'es');
   };
 
   return (
@@ -185,6 +206,11 @@ const WelcomeScreen = ({ onProceed }) => {
           </a>
         </motion.div>
       </motion.footer>
+
+      {/* Contador de visitas */}
+      <div className="visit-counter">
+        {`Visitas: ${visitCount}`}  {/* Mostramos el número de visitas */}
+      </div>
     </motion.div>
   );
 };
