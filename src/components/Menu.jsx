@@ -84,6 +84,7 @@ const menuData = {
           { name: 'Soda de Frutos Rojos', price: 13000 },
           { name: 'Soda de Frutos Verdes', price: 13000 },
           { name: 'Soda de Frutos Amarillos', price: 13000 },
+          { name: 'Soda de Liche', price: 13000 },
         ],
       },
       {
@@ -93,6 +94,7 @@ const menuData = {
           { name: 'Porción Torta de Red Velvet', price: 8000 },
           { name: 'Porción Torta de Chocolate', price: 8000 },
           { name: 'Porción Torta de Almojábana', price: 7000 },
+          { name: 'Porción Torta de Naranja', price: 8000 },
         ],
       },
       {
@@ -109,7 +111,7 @@ const menuData = {
         items: [
           { name: 'Copa de Helado', price: 8000 },
           { name: 'Adición de Leche de Almendras', price: 2000 },
-          { name: 'Desayuno Omelet', price: 13000 },
+          { name: 'Desayuno Omelet', price: 15000 },
         ],
       },
     ],
@@ -183,6 +185,7 @@ const menuData = {
           { name: 'Red Berry Soda', price: 13000 },
           { name: 'Green Fruit Soda', price: 13000 },
           { name: 'Yellow Fruit Soda', price: 13000 },
+          { name: 'Liche Soda', price: 13000 },
         ],
       },
       {
@@ -192,6 +195,7 @@ const menuData = {
           { name: 'Red Velvet Cake Slice', price: 8000 },
           { name: 'Chocolate Cake Slice', price: 8000 },
           { name: 'Corn Cake Slice', price: 7000 },
+          { name: 'Orange Cake Slice', price: 8000 },
         ],
       },
       {
@@ -208,7 +212,7 @@ const menuData = {
         items: [
           { name: 'Ice Cream Cup', price: 8000 },
           { name: 'Almond Milk Add-on', price: 2000 },
-          { name: 'Omelette Breakfast', price: 13000 },
+          { name: 'Omelette Breakfast', price: 15000 },
         ],
       },
     ],
