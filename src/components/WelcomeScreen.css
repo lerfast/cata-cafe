@@ -155,12 +155,25 @@
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
-  font-size: 0.8rem; /* Tamaño pequeño del texto */
-  opacity: 0.5; /* Hacemos que el contador sea menos llamativo */
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  opacity: 0.5; /* Menos llamativo */
 }
+
 
 .visit-counter:hover {
   opacity: 1; /* Al pasar el mouse, lo hacemos más visible */
+}
+
+.visit-counter a {
+  color: white; /* Aseguramos que el enlace sea visible */
+  text-decoration: none; /* Quitamos el subrayado del enlace */
+  margin-left: 5px; /* Espacio entre el texto y el enlace */
+}
+
+.visit-counter a:hover {
+  text-decoration: underline; /* Subrayamos el enlace al pasar el mouse */
 }
 
 /* Estilos responsivos */
