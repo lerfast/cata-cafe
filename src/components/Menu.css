@@ -60,11 +60,65 @@
   
   .language-button:hover {
     background-color: #1e5c48; /* Color más oscuro en hover */
+    
   }
   
   .language-button:focus {
     outline: none; /* Remueve el borde por defecto cuando está enfocado */
   }
+
+  .footer-container {
+    background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco semi-transparente */
+    padding: 30px;
+    width: 80%; /* Cambiamos el ancho para centrarlo */
+    margin: 0 auto; /* Centra el footer horizontalmente */
+    border-radius: 15px; /* Esquinas redondeadas */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .footer-madeby,
+  .footer-contact {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .footer-contact {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+  
+  .footer-icons {
+    margin-top: 20px;
+  }
+  
+  .footer-icons a {
+    color: inherit; /* Usamos los colores por defecto para los íconos */
+    margin: 0 15px;
+    transition: color 0.3s;
+  }
+  
+  .footer-icons a.whatsapp {
+    color: #25D366; /* Color original de WhatsApp */
+  }
+  
+  .footer-icons a.linkedin {
+    color: #0077b5; /* Color original de LinkedIn */
+  }
+  
+  .footer-icons a.github {
+    color: #333; /* Color original de GitHub */
+  }
+  
+  .footer-icons a:hover {
+    opacity: 0.7; /* Efecto hover en los íconos */
+  }
+  
+  .footer-icons svg {
+    vertical-align: middle;
+  }
+  
   
   /* Estilos responsivos para móviles */
   @media (max-width: 768px) {
@@ -110,11 +164,55 @@
     color: #2a7f62;
 }
 .footer-container {
-    text-align: center;
-   
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco semi-transparente */
+  padding: 20px 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  right: 10px;
+}
+
+/* Estilo para el texto "Desarrollado por" */
+.footer-made-by {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2a7f62;
+  font-weight: 600;
+}
+
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #25D366;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.whatsapp-link:hover {
+  color: #128C7E; /* Color más oscuro en hover */
+}
+
+.whatsapp-icon {
+  margin-right: 10px;
+}
+
+.footer-container {
+  padding: 30px 10px;
+}
+
+.footer-madeby,
+.footer-contact {
+  font-size: 1rem;
+}
+
+.footer-contact {
+  font-size: 1.2rem;
+}
+
+.footer-icons a {
+  margin: 0 10px;
 }

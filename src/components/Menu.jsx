@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion'; // Importamos motion para las animaciones
 import './Menu.css'; // Importamos el archivo CSS
 import MenuSection from './MenuSection';
 import logoImage from '../assets/logo.png'; // Importamos la imagen del logo
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importamos el componente de FontAwesome
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'; // Importamos el icono de WhatsApp
+import { faWhatsapp, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+
 
 
 // Datos del menú en ambos idiomas (actualizado con todos los elementos)
@@ -82,6 +84,7 @@ const menuData = {
           { name: 'Soda de Frutos Rojos', price: 13000 },
           { name: 'Soda de Frutos Verdes', price: 13000 },
           { name: 'Soda de Frutos Amarillos', price: 13000 },
+          { name: 'Soda de Liche', price: 13000 },
         ],
       },
       {
@@ -91,6 +94,7 @@ const menuData = {
           { name: 'Porción Torta de Red Velvet', price: 8000 },
           { name: 'Porción Torta de Chocolate', price: 8000 },
           { name: 'Porción Torta de Almojábana', price: 7000 },
+          { name: 'Porción Torta de Naranja', price: 8000 },
         ],
       },
       {
@@ -107,7 +111,7 @@ const menuData = {
         items: [
           { name: 'Copa de Helado', price: 8000 },
           { name: 'Adición de Leche de Almendras', price: 2000 },
-          { name: 'Desayuno Omelet', price: 13000 },
+          { name: 'Desayuno Omelet', price: 15000 },
         ],
       },
     ],
@@ -122,7 +126,7 @@ const menuData = {
           { name: 'Irish Cappuccino', price: 7000 },
           { name: 'Café Latte', price: 7000 },
           { name: 'Espresso', price: 4500 },
-          { name: 'Americano', price: 5500 },
+          { name: 'American', price: 5500 },
           { name: 'Carajillo', price: 7000 },
           { name: 'Mocaccino', price: 7000 },
           { name: 'Chai Latte', price: 7000 },
@@ -142,7 +146,7 @@ const menuData = {
       {
         section: 'Other Drinks',
         items: [
-          { name: 'Cocacola', price: 4500 },
+          { name: 'Coke', price: 4500 },
           { name: 'Ginger', price: 4000 },
           { name: 'Still Water', price: 3500 },
           { name: 'Sparkling Water', price: 4000 },
@@ -181,6 +185,7 @@ const menuData = {
           { name: 'Red Berry Soda', price: 13000 },
           { name: 'Green Fruit Soda', price: 13000 },
           { name: 'Yellow Fruit Soda', price: 13000 },
+          { name: 'Liche Soda', price: 13000 },
         ],
       },
       {
@@ -190,6 +195,7 @@ const menuData = {
           { name: 'Red Velvet Cake Slice', price: 8000 },
           { name: 'Chocolate Cake Slice', price: 8000 },
           { name: 'Corn Cake Slice', price: 7000 },
+          { name: 'Orange Cake Slice', price: 8000 },
         ],
       },
       {
@@ -206,17 +212,41 @@ const menuData = {
         items: [
           { name: 'Ice Cream Cup', price: 8000 },
           { name: 'Almond Milk Add-on', price: 2000 },
-          { name: 'Omelette Breakfast', price: 13000 },
+          { name: 'Omelette Breakfast', price: 15000 },
         ],
       },
     ],
   };
   
 
-  const Menu = () => {
-    const [language, setLanguage] = useState('es');  // Estado para el idioma (español por defecto)
+  const footerTexts = {
+    es: {
+      madeBy: 'Desarrollado por Luis Emilio Rojas',
+      contact: '¿Quieres un sitio web como este? ¡Hablemos!',
+    },
+    en: {
+      madeBy: 'Developed by Luis Emilio Rojas',
+      contact: "Want a website like this? Let's talk!",
+    },
+  };
   
-    // Función para alternar el idioma
+  // Variantes para la animación del footer
+  const footerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        delay: 0.5,
+      },
+    },
+  };
+  
+  const Menu = () => {
+    const [language, setLanguage] = useState('es'); // Estado para el idioma (español por defecto)
+  
+    // Función para alternar el idioma.
     const toggleLanguage = () => {
       setLanguage(language === 'es' ? 'en' : 'es');
     };
@@ -239,14 +269,32 @@ const menuData = {
           <MenuSection key={index} title={section.section} items={section.items} />
         ))}
   
-        {/* Footer con el enlace de WhatsApp */}
-        <div className="footer-container">
-          <p>Hecho por Luis Emilio Rojas</p>
-          <a href="https://wa.me/573187757620" className="whatsapp-link" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faWhatsapp} size="2x" className="whatsapp-icon" />
-            Contacta conmigo en WhatsApp
-          </a>
-        </div>
+        {/* Footer mejorado con animaciones */}
+        <motion.footer
+          className="footer-container"
+          initial="hidden"
+          animate="visible"
+          variants={footerVariants}
+        >
+          <p className="footer-madeby">{footerTexts[language].madeBy}</p>
+          <p className="footer-contact">{footerTexts[language].contact}</p>
+          <motion.div
+            className="footer-icons"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 1 }}
+          >
+            <a href="https://wa.me/573187757620" className="whatsapp" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faWhatsapp} size="2x" />
+            </a>
+            <a href="https://www.linkedin.com/in/luisemiliorojas/" className="linkedin" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faLinkedin} size="2x" />
+            </a>
+            <a href="https://github.com/lerfast" className="github" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faGithub} size="2x" />
+            </a>
+          </motion.div>
+        </motion.footer>
       </div>
     );
   };
