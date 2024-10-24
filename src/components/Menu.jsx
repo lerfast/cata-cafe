@@ -246,7 +246,7 @@ const menuData = {
   const Menu = () => {
     const [language, setLanguage] = useState('es'); // Estado para el idioma (español por defecto)
   
-    // Función para alternar el idioma
+    // Función para alternar el idioma.
     const toggleLanguage = () => {
       setLanguage(language === 'es' ? 'en' : 'es');
     };
