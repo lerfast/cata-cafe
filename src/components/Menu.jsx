@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion'; // Importamos motion para las animaciones
-import './Menu.css'; // Importamos el archivo CSS
+import { motion } from 'framer-motion';
+import './Menu.css'; 
 import MenuSection from './MenuSection';
-import logoImage from '../assets/logo.png'; // Importamos la imagen del logo
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importamos el componente de FontAwesome
+import ProductCarousel from './ProductCarousel'; // Importamos el carrusel
+import logoImage from '../assets/logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+
 
 
 
@@ -230,73 +232,78 @@ const menuData = {
     },
   };
   
-  // Variantes para la animación del footer
-  const footerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        delay: 0.5,
-      },
+// Variantes para la animación del footer
+const footerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      delay: 0.5,
     },
+  },
+};
+
+const Menu = () => {
+  const [language, setLanguage] = useState('es'); // Estado para el idioma (español por defecto)
+
+  // Función para alternar el idioma.
+  const toggleLanguage = () => {
+    setLanguage(language === 'es' ? 'en' : 'es');
   };
-  
-  const Menu = () => {
-    const [language, setLanguage] = useState('es'); // Estado para el idioma (español por defecto)
-  
-    // Función para alternar el idioma.
-    const toggleLanguage = () => {
-      setLanguage(language === 'es' ? 'en' : 'es');
-    };
-  
-    return (
-      <div className="menu-container">
-        {/* Header fijo con el logo, título y botón de idioma */}
-        <div className="menu-header-container">
-          <img src={logoImage} alt="Cata Café Logo" className="logo" />
-          <h1 className="menu-header">{language === 'es' ? 'Menú' : 'Menu'}</h1>
-  
-          {/* Botón para alternar el idioma */}
-          <button className="language-button" onClick={toggleLanguage}>
-            {language === 'es' ? 'English' : 'Español'}
-          </button>
-        </div>
-  
-        {/* Renderización de cada sección del menú */}
+
+  return (
+    <div className="menu-container">
+      {/* Header fijo con el logo, título y botón de idioma */}
+      <div className="menu-header-container">
+        <img src={logoImage} alt="Cata Café Logo" className="logo" />
+        <h1 className="menu-header">{language === 'es' ? 'Menú' : 'Menu'}</h1>
+
+        {/* Botón para alternar el idioma */}
+        <button className="language-button" onClick={toggleLanguage}>
+          {language === 'es' ? 'English' : 'Español'}
+        </button>
+      </div>
+
+      {/* Carrusel de productos fijo debajo del header */}
+      <ProductCarousel language={language} />
+
+      {/* Renderización de cada sección del menú (queda debajo del carrusel) */}
+      <div className="menu-sections">
         {menuData[language].map((section, index) => (
           <MenuSection key={index} title={section.section} items={section.items} />
         ))}
-  
-        {/* Footer mejorado con animaciones */}
-        <motion.footer
-          className="footer-container"
-          initial="hidden"
-          animate="visible"
-          variants={footerVariants}
-        >
-          <p className="footer-madeby">{footerTexts[language].madeBy}</p>
-          <p className="footer-contact">{footerTexts[language].contact}</p>
-          <motion.div
-            className="footer-icons"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 1 }}
-          >
-            <a href="https://wa.me/573187757620" className="whatsapp" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faWhatsapp} size="2x" />
-            </a>
-            <a href="https://www.linkedin.com/in/luisemiliorojas/" className="linkedin" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faLinkedin} size="2x" />
-            </a>
-            <a href="https://github.com/lerfast" className="github" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faGithub} size="2x" />
-            </a>
-          </motion.div>
-        </motion.footer>
       </div>
-    );
-  };
-  
-  export default Menu;
+
+      {/* Footer mejorado con animaciones */}
+      <motion.footer
+        className="footer-container"
+        initial="hidden"
+        animate="visible"
+        variants={footerVariants}
+      >
+        <p className="footer-madeby">{footerTexts[language].madeBy}</p>
+        <p className="footer-contact">{footerTexts[language].contact}</p>
+        <motion.div
+          className="footer-icons"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 1 }}
+        >
+          <a href="https://wa.me/573187757620" className="whatsapp" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faWhatsapp} size="2x" />
+          </a>
+          <a href="https://www.linkedin.com/in/luisemiliorojas/" className="linkedin" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faLinkedin} size="2x" />
+          </a>
+          <a href="https://github.com/lerfast" className="github" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faGithub} size="2x" />
+          </a>
+        </motion.div>
+      </motion.footer>
+    </div>
+  );
+};
+
+export default Menu;

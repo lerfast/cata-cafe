@@ -1,0 +1,53 @@
+/* src/components/ProductCarousel.css */
+
+.carousel-container {
+  width: 100%; /* Aseguramos que el carrusel ocupe todo el ancho */
+  height: 27vh; /* Ocupa un tercio de la pantalla */
+  margin: 0 auto;
+  position: fixed; /* Fijo debajo del header */
+  top: 102px; /* Ajusta según la altura del header */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  right: 0px;
+  background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco semitransparente */
+  z-index: 1000; /* Asegura que el carrusel esté sobre el contenido */
+  
+}
+
+.product-card {
+  text-align: center;
+  padding: 10px;
+}
+
+
+
+
+.product-card img {
+  width: 95%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-card h3 {
+  font-size: 1.4rem;
+  margin: 10px 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-card .price {
+  font-size: 1.2rem;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* Estilos para los botones de control del carrusel */
+.slick-prev:before, .slick-next:before {
+  color: #333; /* Color de los controles */
+}
+
+.slick-dots li button:before {
+  color: #333; /* Color de los puntos de navegación */
+}
