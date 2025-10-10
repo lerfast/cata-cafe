@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/cata-cafe/static/css/main.ab5e5ae2.css",
-    "main.js": "/cata-cafe/static/js/main.89066535.js",
+    "main.css": "/cata-cafe/static/css/main.c898ad34.css",
+    "main.js": "/cata-cafe/static/js/main.1ec7659d.js",
     "static/js/453.2a4f5564.chunk.js": "/cata-cafe/static/js/453.2a4f5564.chunk.js",
     "static/media/background.png": "/cata-cafe/static/media/background.34a18a715fadb4244a09.png",
     "static/media/backgroundmenu.png": "/cata-cafe/static/media/backgroundmenu.5955fadb020d97c8a9cb.png",
     "static/media/logo.png": "/cata-cafe/static/media/logo.9b5269afdd284e25b00f.png",
     "index.html": "/cata-cafe/index.html",
-    "main.ab5e5ae2.css.map": "/cata-cafe/static/css/main.ab5e5ae2.css.map",
-    "main.89066535.js.map": "/cata-cafe/static/js/main.89066535.js.map",
+    "main.c898ad34.css.map": "/cata-cafe/static/css/main.c898ad34.css.map",
+    "main.1ec7659d.js.map": "/cata-cafe/static/js/main.1ec7659d.js.map",
     "453.2a4f5564.chunk.js.map": "/cata-cafe/static/js/453.2a4f5564.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ab5e5ae2.css",
-    "static/js/main.89066535.js"
+    "static/css/main.c898ad34.css",
+    "static/js/main.1ec7659d.js"
   ]
 }
