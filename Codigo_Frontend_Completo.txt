@@ -1,0 +1,1229 @@
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/reportWebVitals.js
+--------------------------------------------------------------------------------
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/App.css
+--------------------------------------------------------------------------------
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/index.js
+--------------------------------------------------------------------------------
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/index.css
+--------------------------------------------------------------------------------
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/App.test.js
+--------------------------------------------------------------------------------
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/setupTests.js
+--------------------------------------------------------------------------------
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/App.js
+--------------------------------------------------------------------------------
+import React, { useState } from 'react';
+import WelcomeScreen from './components/WelcomeScreen';
+import Menu from './components/Menu'; // Importamos el nuevo componente Menu
+
+const App = () => {
+  const [showMenu, setShowMenu] = useState(false); // Estado para manejar el menú
+
+  return (
+    <>
+      {!showMenu ? (
+        <WelcomeScreen onProceed={() => setShowMenu(true)} />
+      ) : (
+        <Menu /> 
+      )}
+    </>
+  );
+};
+
+export default App;
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/components/Menu.jsx
+--------------------------------------------------------------------------------
+import React, { useState } from 'react';
+import { motion } from 'framer-motion'; // Importamos motion para las animaciones
+import './Menu.css'; // Importamos el archivo CSS
+import MenuSection from './MenuSection';
+import logoImage from '../assets/logo.png'; // Importamos la imagen del logo
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importamos el componente de FontAwesome
+import { faWhatsapp, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+
+
+
+// Datos del menú en ambos idiomas (actualizado con todos los elementos)
+
+
+// Datos del menú en ambos idiomas
+// Datos del menú en ambos idiomas (actualizado con todos los elementos)
+const menuData = {
+    es: [
+      {
+        section: 'Bebidas Calientes',
+        items: [
+          { name: 'Capuchino Tradicional', price: 6000 },
+          { name: 'Capuchino Saborizado', price: 8000 },
+          { name: 'Capuchino de Almendras', price: 8000 },
+          { name: 'Capuchino Vianés', price: 7000 },
+          { name: 'Capuchino Irlandés', price: 7000 },
+          { name: 'Café Latte', price: 7000 },
+          { name: 'Café Expresso', price: 4500 },
+          { name: 'Café Americano', price: 5500 },
+          { name: 'Café Carajillo', price: 7000 },
+          { name: 'Mocaccino', price: 7000 },
+          { name: 'Te Chai Latte', price: 7000 },
+          { name: 'Milo Caliente', price: 6500 },
+          { name: 'Chocolate', price: 6500 },
+          { name: 'Aromática de Frutas', price: 6000 },
+          { name: 'Aromática de Yerbabuena', price: 6000 },
+        ],
+      },
+      {
+        section: 'Métodos de Goteo',
+        items: [
+          { name: 'Prensa Francesa', price: 14000 },
+          { name: 'Chemex', price: 16000 },
+        ],
+      },
+      {
+        section: 'Otras Bebidas',
+        items: [
+          { name: 'Cocacola', price: 4500 },
+          { name: 'Ginger', price: 4000 },
+          { name: 'Agua sin Gas', price: 3500 },
+          { name: 'Agua con Gas', price: 4000 },
+          { name: 'Soda Saborizada', price: 6000 },
+          { name: 'Cerveza', price: 8000 },
+        ],
+      },
+      {
+        section: 'Panadería',
+        items: [
+          { name: 'Palitos de Queso', price: 5000 },
+          { name: 'Hojaldre de Pollo', price: 5500 },
+          { name: 'Pandeyuca', price: 3200 },
+          { name: 'Galletas de Avena', price: 4000 },
+          { name: 'Empanadas', price: 5000 },
+        ],
+      },
+      {
+        section: 'Bebidas Frías',
+        items: [
+          { name: 'Moka', price: 12000 },
+          { name: 'Granizado de Café', price: 11000 },
+          { name: 'Capuchino', price: 12000 },
+          { name: 'Café Latte', price: 9000 },
+          { name: 'Te Chai', price: 10000 },
+          { name: 'Nevado de Café', price: 13000 },
+          { name: 'Afogato', price: 11000 },
+          { name: 'Bebida Guanábana Menta', price: 10000 },
+          { name: 'Bebida Fresa Yerbabuena', price: 10000 },
+          { name: 'Limonada de Yerbabuena', price: 8000 },
+          { name: 'Limonada Sencilla', price: 8000 },
+          { name: 'Limonada Cerezada', price: 10000 },
+          { name: 'Limonada de Coco', price: 10000 },
+          { name: 'Granizado de Fruta', price: 8000 },
+          { name: 'Malteadas (Café, Vainilla, Oreo)', price: 13000 },
+          { name: 'Soda de Frutos Rojos', price: 13000 },
+          { name: 'Soda de Frutos Verdes', price: 13000 },
+          { name: 'Soda de Frutos Amarillos', price: 13000 },
+          { name: 'Soda de Liche', price: 13000 },
+        ],
+      },
+      {
+        section: 'Tortas',
+        items: [
+          { name: 'Porción Torta de Zanahoria', price: 8000 },
+          { name: 'Porción Torta de Red Velvet', price: 8000 },
+          { name: 'Porción Torta de Chocolate', price: 8000 },
+          { name: 'Porción Torta de Almojábana', price: 7000 },
+          { name: 'Porción Torta de Naranja', price: 8000 },
+        ],
+      },
+      {
+        section: 'Sandwiches',
+        items: [
+          { name: 'Sándwich de Pollo', price: 10000 },
+          { name: 'Sándwich Ranchero', price: 13000 },
+          { name: 'Sándwich Sencillo', price: 7000 },
+          { name: 'Sándwich de Jamón y Queso', price: 8000 },
+        ],
+      },
+      {
+        section: 'Otros',
+        items: [
+          { name: 'Copa de Helado', price: 8000 },
+          { name: 'Adición de Leche de Almendras', price: 2000 },
+          { name: 'Desayuno Omelet', price: 15000 },
+        ],
+      },
+    ],
+    en: [
+      {
+        section: 'Hot Drinks',
+        items: [
+          { name: 'Traditional Cappuccino', price: 6000 },
+          { name: 'Flavored Cappuccino', price: 8000 },
+          { name: 'Almond Cappuccino', price: 8000 },
+          { name: 'Viennese Cappuccino', price: 7000 },
+          { name: 'Irish Cappuccino', price: 7000 },
+          { name: 'Café Latte', price: 7000 },
+          { name: 'Espresso', price: 4500 },
+          { name: 'American', price: 5500 },
+          { name: 'Carajillo', price: 7000 },
+          { name: 'Mocaccino', price: 7000 },
+          { name: 'Chai Latte', price: 7000 },
+          { name: 'Hot Milo', price: 6500 },
+          { name: 'Chocolate', price: 6500 },
+          { name: 'Fruit Aromatic Tea', price: 6000 },
+          { name: 'Mint Aromatic Tea', price: 6000 },
+        ],
+      },
+      {
+        section: 'Drip Methods',
+        items: [
+          { name: 'French Press', price: 14000 },
+          { name: 'Chemex', price: 16000 },
+        ],
+      },
+      {
+        section: 'Other Drinks',
+        items: [
+          { name: 'Coke', price: 4500 },
+          { name: 'Ginger', price: 4000 },
+          { name: 'Still Water', price: 3500 },
+          { name: 'Sparkling Water', price: 4000 },
+          { name: 'Flavored Soda', price: 6000 },
+          { name: 'Beer', price: 8000 },
+        ],
+      },
+      {
+        section: 'Bakery',
+        items: [
+          { name: 'Cheese Sticks', price: 5000 },
+          { name: 'Chicken Puff', price: 5500 },
+          { name: 'Pandeyuca', price: 3200 },
+          { name: 'Oatmeal Cookies', price: 4000 },
+          { name: 'Empanadas', price: 5000 },
+        ],
+      },
+      {
+        section: 'Cold Drinks',
+        items: [
+          { name: 'Moka', price: 12000 },
+          { name: 'Iced Coffee', price: 11000 },
+          { name: 'Cappuccino', price: 12000 },
+          { name: 'Iced Latte', price: 9000 },
+          { name: 'Iced Chai', price: 10000 },
+          { name: 'Coffee Frappe', price: 13000 },
+          { name: 'Affogato', price: 11000 },
+          { name: 'Soursop Mint Drink', price: 10000 },
+          { name: 'Strawberry Mint Drink', price: 10000 },
+          { name: 'Mint Lemonade', price: 8000 },
+          { name: 'Plain Lemonade', price: 8000 },
+          { name: 'Cherry Lemonade', price: 10000 },
+          { name: 'Coconut Lemonade', price: 10000 },
+          { name: 'Fruit Slush', price: 8000 },
+          { name: 'Milkshakes (Coffee, Vanilla, Oreo)', price: 13000 },
+          { name: 'Red Berry Soda', price: 13000 },
+          { name: 'Green Fruit Soda', price: 13000 },
+          { name: 'Yellow Fruit Soda', price: 13000 },
+          { name: 'Liche Soda', price: 13000 },
+        ],
+      },
+      {
+        section: 'Cakes',
+        items: [
+          { name: 'Carrot Cake Slice', price: 8000 },
+          { name: 'Red Velvet Cake Slice', price: 8000 },
+          { name: 'Chocolate Cake Slice', price: 8000 },
+          { name: 'Corn Cake Slice', price: 7000 },
+          { name: 'Orange Cake Slice', price: 8000 },
+        ],
+      },
+      {
+        section: 'Sandwiches',
+        items: [
+          { name: 'Chicken Sandwich', price: 10000 },
+          { name: 'Ranch Sandwich', price: 13000 },
+          { name: 'Simple Sandwich', price: 7000 },
+          { name: 'Ham and Cheese Sandwich', price: 8000 },
+        ],
+      },
+      {
+        section: 'Others',
+        items: [
+          { name: 'Ice Cream Cup', price: 8000 },
+          { name: 'Almond Milk Add-on', price: 2000 },
+          { name: 'Omelette Breakfast', price: 15000 },
+        ],
+      },
+    ],
+  };
+  
+
+  const footerTexts = {
+    es: {
+      madeBy: 'Desarrollado por Luis Emilio Rojas',
+      contact: '¿Quieres un sitio web como este? ¡Hablemos!',
+    },
+    en: {
+      madeBy: 'Developed by Luis Emilio Rojas',
+      contact: "Want a website like this? Let's talk!",
+    },
+  };
+  
+  // Variantes para la animación del footer
+  const footerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        delay: 0.5,
+      },
+    },
+  };
+  
+  const Menu = () => {
+    const [language, setLanguage] = useState('es'); // Estado para el idioma (español por defecto)
+  
+    // Función para alternar el idioma.
+    const toggleLanguage = () => {
+      setLanguage(language === 'es' ? 'en' : 'es');
+    };
+  
+    return (
+      <div className="menu-container">
+        {/* Header fijo con el logo, título y botón de idioma */}
+        <div className="menu-header-container">
+          <img src={logoImage} alt="Cata Café Logo" className="logo" />
+          <h1 className="menu-header">{language === 'es' ? 'Menú' : 'Menu'}</h1>
+  
+          {/* Botón para alternar el idioma */}
+          <button className="language-button" onClick={toggleLanguage}>
+            {language === 'es' ? 'English' : 'Español'}
+          </button>
+        </div>
+  
+        {/* Renderización de cada sección del menú */}
+        {menuData[language].map((section, index) => (
+          <MenuSection key={index} title={section.section} items={section.items} />
+        ))}
+  
+        {/* Footer mejorado con animaciones */}
+        <motion.footer
+          className="footer-container"
+          initial="hidden"
+          animate="visible"
+          variants={footerVariants}
+        >
+          <p className="footer-madeby">{footerTexts[language].madeBy}</p>
+          <p className="footer-contact">{footerTexts[language].contact}</p>
+          <motion.div
+            className="footer-icons"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 1 }}
+          >
+            <a href="https://wa.me/573187757620" className="whatsapp" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faWhatsapp} size="2x" />
+            </a>
+            <a href="https://www.linkedin.com/in/luisemiliorojas/" className="linkedin" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faLinkedin} size="2x" />
+            </a>
+            <a href="https://github.com/lerfast" className="github" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faGithub} size="2x" />
+            </a>
+          </motion.div>
+        </motion.footer>
+      </div>
+    );
+  };
+  
+  export default Menu;
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/components/MenuSection.jsx
+--------------------------------------------------------------------------------
+// src/components/MenuSection.js
+import React from 'react';
+import styled from 'styled-components';
+import MenuItem from './MenuItem';
+
+const SectionTitle = styled.h2`
+  margin: 2rem auto 1rem auto;  /* Auto en los márgenes izquierda y derecha para centrar */
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2a7f62;
+  text-align: center;
+  background: rgba(230, 228, 228, 0.6);
+  width: fit-content;  /* Asegura que el contenedor se ajuste al contenido */
+  padding: 0.5rem 1rem; /* Añade un padding para un mejor ajuste */
+  border-radius: 8px;   /* Bordes redondeados */
+`;
+
+
+
+const MenuSectionContainer = styled.div`
+  margin-bottom: 2rem;
+`;
+
+const ItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const MenuSection = ({ title, items }) => {
+  return (
+    <MenuSectionContainer>
+      <SectionTitle>{title}</SectionTitle>
+      <ItemContainer>
+        {items.map((item, index) => (
+          <MenuItem key={index} name={item.name} price={item.price} />
+        ))}
+      </ItemContainer>
+    </MenuSectionContainer>
+  );
+};
+
+export default MenuSection;
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/components/MenuItem.jsx
+--------------------------------------------------------------------------------
+// src/components/MenuItem.js
+import React from 'react';
+import styled from 'styled-components';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
+const MenuItemContainer = styled(motion.div)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  &:hover {
+    background-color: #f4f4f4;
+  }
+`;
+
+const ItemName = styled.span`
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+`;
+
+const ItemPrice = styled.span`
+  font-size: 1.2rem;
+  color: #ff9f1c;
+`;
+
+const MenuItem = ({ name, price }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true, // La animación se ejecuta solo una vez
+    threshold: 0.1,    // Puedes ajustar el umbral según tus necesidades
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
+  return (
+    <MenuItemContainer
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      transition={{ duration: 0.8 }} // Ajusta la duración según prefieras
+    >
+      <ItemName>{name}</ItemName>
+      <ItemPrice>${price}</ItemPrice>
+    </MenuItemContainer>
+  );
+};
+
+export default MenuItem;
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/components/WelcomeScreen.css
+--------------------------------------------------------------------------------
+/* Contenedor principal de bienvenida */
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  color: #f0f0f0;
+  text-align: center;
+  position: relative;
+  padding-top: 20px;
+}
+
+/* Botón para cambiar de idioma en la esquina superior izquierda */
+.welcome-language-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.5);  /* Fondo translúcido */
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.welcome-language-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);  /* Color más oscuro al hacer hover */
+}
+
+/* Estilo para el logo */
+.welcome-logo {
+  width: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  background: rgba(220, 219, 219, 0.5);  /* Fondo translúcido */
+  padding: 1rem;  /* Añadimos relleno alrededor del logo */
+  border-radius: 8px;  /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  /* Sombra suave */
+}
+
+/* Estilo del texto principal */
+.welcome-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);  
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  display: inline-block;  /* El fondo ahora se ajusta solo al texto */
+}
+
+/* Estilo del subtexto */
+.welcome-subtext {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  font-style: italic;
+  display: inline-block;
+  max-width: 80%;  /* Limitar el ancho máximo del texto */
+  text-align: center;  /* Centrar el texto */
+}
+
+/* Botón para ver el menú */
+.welcome-menu-button {
+  background: rgba(0, 0, 0, 0.6);  /* Fondo translúcido con más opacidad */
+  color: white;
+  padding: 1rem 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.7);  /* Borde blanco translúcido */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  /* Sombra suave */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;  /* Transiciones suaves */
+}
+
+.welcome-menu-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);  /* Color más oscuro al hacer hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);  /* Aumentar sombra en hover */
+}
+
+/* Footer y estilo de la dirección con fondo translúcido */
+.welcome-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.address-text {
+  background: rgba(0, 0, 0, 0.6); 
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: #ffffff;
+  display: inline-block;
+  max-width: 80%;  /* Limitar el ancho máximo del texto */
+  text-align: center;  /* Centrar el texto */
+  margin-bottom: 15px;
+}
+
+/* Estilo del botón de WhatsApp */
+.whatsapp-button {
+  display: inline-block;
+  background-color: #25d366;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #20b85c;
+}
+
+/* Redes sociales */
+.social-icons {
+  margin-top: 1rem;
+}
+
+.social-icon {
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.facebook {
+  color: #1877f2;  /* Color original de Facebook */
+}
+
+.instagram {
+  color: #e4405f;  /* Color original de Instagram */
+}
+
+.social-icon:hover {
+  opacity: 0.7;  /* Efecto hover para los íconos */
+}
+
+/* Estilo del contador de visitas */
+.visit-counter {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  opacity: 0.5; /* Menos llamativo */
+}
+
+
+.visit-counter:hover {
+  opacity: 1; /* Al pasar el mouse, lo hacemos más visible */
+}
+
+.visit-counter a {
+  color: white; /* Aseguramos que el enlace sea visible */
+  text-decoration: none; /* Quitamos el subrayado del enlace */
+  margin-left: 5px; /* Espacio entre el texto y el enlace */
+}
+
+.visit-counter a:hover {
+  text-decoration: underline; /* Subrayamos el enlace al pasar el mouse */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .welcome-logo {
+    width: 250px;  
+  }
+
+  .welcome-text {
+    font-size: 2rem;  
+  }
+
+  .welcome-subtext {
+    font-size: 1.1rem;
+  }
+
+  .welcome-menu-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;  
+  }
+
+  .social-icon {
+    font-size: 1.5rem;  
+  }
+}
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/components/WelcomeScreen.jsx
+--------------------------------------------------------------------------------
+import React, { useState, useEffect, useRef } from 'react';  // Importamos useRef
+import { motion } from 'framer-motion';
+import './WelcomeScreen.css';
+import backgroundImage from '../assets/background.png';  // Importamos la imagen de fondo
+import logo from '../assets/logo.png';  // Importamos correctamente el logo
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';  // Para íconos
+import { faWhatsapp, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';  // Íconos de redes sociales
+
+// Variantes para las animaciones
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 1.5,  // La imagen de fondo hace un fade-in en 1.5 segundos
+    },
+  },
+};
+
+const logoVariants = {
+  hidden: { opacity: 0, y: -50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 50, duration: 1, delay: 1.2 },  // Logo aparece después del fondo
+  },
+};
+
+const textVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1.2, delay: 1.4 },  // Aparece después del logo
+  },
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 1, delay: 1.8 },  // Botón aparece al final
+  },
+};
+
+// Nuevas variantes para los elementos del footer
+const footerItemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      delay: 2.4,  // Aumentamos el delay para que aparezca al final
+    },
+  },
+};
+
+const WelcomeScreen = ({ onProceed }) => {
+  const [language, setLanguage] = useState('es');  // Estado para manejar el idioma
+  const [visitCount, setVisitCount] = useState(0);  // Estado para el contador de visitas
+  const hasIncremented = useRef(false);  // Usamos useRef para evitar incrementos múltiples
+
+  useEffect(() => {
+    if (!hasIncremented.current) {  // Verificamos si ya hemos incrementado
+      const incrementVisitCount = () => {
+        const visits = localStorage.getItem('visitCount');
+        if (visits) {
+          const newVisitCount = parseInt(visits) + 1;
+          setVisitCount(newVisitCount);
+          localStorage.setItem('visitCount', newVisitCount);
+        } else {
+          setVisitCount(1);
+          localStorage.setItem('visitCount', 1);
+        }
+      };
+
+      incrementVisitCount();
+      hasIncremented.current = true;  // Marcamos que ya hemos incrementado
+    }
+  }, []); // El array vacío asegura que se ejecute solo una vez
+
+  // Función para alternar el idioma
+  const toggleLanguage = () => {
+    setLanguage(language === 'es' ? 'en' : 'es');
+  };
+
+  // Textos en ambos idiomas
+  const texts = {
+    es: {
+      welcome: '¡Bienvenido a Cata Café!',
+      subtext: 'Donde cada taza de café cuenta una historia. Relájate, disfruta y descubre nuestras especialidades preparadas con pasión.',
+      button: 'Ver el Menú',
+      address: 'Nos encontramos en la Calle 12 # 5-45, Neiva, Huila, Colombia.',
+      followUs: 'Síguenos en:',
+      whatsapp: 'Para pedidos',
+    },
+    en: {
+      welcome: 'Welcome to Cata Café!',
+      subtext: 'Where every cup of coffee tells a story. Relax, enjoy, and discover our specialties crafted with passion.',
+      button: 'View the Menu',
+      address: 'We are located at Calle 12 # 5-45, Neiva, Huila, Colombia.',
+      followUs: 'Follow us on:',
+      whatsapp: 'For orders',
+    },
+  };
+
+  return (
+    <motion.div
+      className="welcome-container"
+      style={{ backgroundImage: `url(${backgroundImage})` }}  // Imagen de fondo
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Botón para cambiar de idioma, en la esquina superior izquierda */}
+      <motion.button
+        className="welcome-language-button"  // Nueva clase CSS para el botón de idioma
+        variants={buttonVariants}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={toggleLanguage}  // Cambiamos el idioma al hacer clic
+      >
+        {language === 'es' ? 'English' : 'Español'}
+      </motion.button>
+
+      {/* Logo de Cata Café con la clase "welcome-logo" */}
+      <motion.img 
+        src={logo}  // Usamos la variable importada "logo" para que Webpack maneje la ruta correctamente
+        alt="Cata Café Logo" 
+        className="welcome-logo"  // Usamos la nueva clase aquí
+        variants={logoVariants}
+      />
+      
+      {/* Mensaje de bienvenida */}
+      <motion.h1 className="welcome-text" variants={textVariants}>
+        {texts[language].welcome}
+      </motion.h1>
+
+      {/* Subtexto */}
+      <motion.p className="welcome-subtext" variants={textVariants} transition={{ delay: 2 }}>
+        {texts[language].subtext}
+      </motion.p>
+
+      {/* Botón para ver el menú */}
+      <motion.button
+        className="welcome-menu-button"  // Nueva clase CSS para el botón de ver menú
+        variants={buttonVariants}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={onProceed}
+      >
+        {texts[language].button}
+      </motion.button>
+
+      {/* Footer con la información de contacto y redes sociales */}
+      <motion.footer 
+        className="welcome-footer"
+        initial="hidden"
+        animate="visible"
+        variants={footerItemVariants} // Animación para el footer
+      >
+        <motion.p 
+          className="address-text"
+          variants={footerItemVariants}  // Animación para la dirección
+        >
+          {texts[language].address}
+        </motion.p>
+
+        <motion.a
+          href="https://wa.me/573228721278"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whatsapp-button"
+          variants={footerItemVariants}  // Animación para el botón de WhatsApp
+        >
+          <FontAwesomeIcon icon={faWhatsapp} /> {texts[language].whatsapp}
+        </motion.a>
+
+        <motion.p
+          variants={footerItemVariants}  // Animación para el texto de redes sociales
+        >
+          {texts[language].followUs}
+        </motion.p>
+
+        <motion.div 
+          className="social-icons"
+          variants={footerItemVariants}  // Animación para los iconos sociales
+        >
+          <a
+            href="https://www.facebook.com/profile.php?id=61559948560646"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon facebook"
+          >
+            <FontAwesomeIcon icon={faFacebook} />
+          </a>
+          <a
+            href="https://www.instagram.com/catacafeneiva/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon instagram"
+          >
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+        </motion.div>
+      </motion.footer>
+
+      {/* Contador de visitas con HitWebCounter */}
+      <div className="visit-counter">
+        <a href="https://www.hitwebcounter.com" target="_blank" rel="noopener noreferrer">
+          <img 
+            src="https://hitwebcounter.com/counter/counter.php?page=17014532&style=0038&nbdigits=9&type=page&initCount=0"
+            title="Counter Widget"
+            alt="Visit counter For Websites"
+            border="0"
+          />
+        </a>
+      </div>
+
+    </motion.div>
+  );
+};
+
+export default WelcomeScreen;
+
+
+--------------------------------------------------------------------------------
+Ruta del archivo: /Users/luisrojas/Documents/GitHub/cata-cafe2/src/components/Menu.css
+--------------------------------------------------------------------------------
+/* Contenedor principal del menú */
+.menu-container {
+    background-image: url('../assets/backgroundmenu.png'); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    padding-top: 120px; /* Añadimos un padding superior para evitar que el contenido se superponga al header */
+  }
+  
+  /* Header fijo para el logo, el título y el botón de idioma */
+  .menu-header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    padding: 10px 20px;  /* Aumentamos el padding */
+    display: flex;
+    justify-content: space-between; /* Distribuye el logo, el título y el botón de idioma */
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Añade una sombra sutil al header */
+  }
+  
+  /* Estilo para el logo */
+  .logo {
+    width: 120px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  /* Estilo para el título "Menú" centrado */
+  .menu-header {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2a7f62; /* Color del texto verde */
+    text-align: center;
+    flex-grow: 1; /* Hace que el título ocupe el espacio disponible */
+    margin-left: -46px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Estilo del botón de idioma */
+  .language-button {
+    background-color: #2a7f62; /* Botón en color verde oscuro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px; /* Botón redondeado */
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* Empuja el botón hacia la derecha */
+    margin-right: 10px; /* Agregamos un margen derecho para que no quede al borde */
+  }
+  
+  .language-button:hover {
+    background-color: #1e5c48; /* Color más oscuro en hover */
+    
+  }
+  
+  .language-button:focus {
+    outline: none; /* Remueve el borde por defecto cuando está enfocado */
+  }
+
+  .footer-container {
+    background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco semi-transparente */
+    padding: 30px;
+    width: 80%; /* Cambiamos el ancho para centrarlo */
+    margin: 0 auto; /* Centra el footer horizontalmente */
+    border-radius: 15px; /* Esquinas redondeadas */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .footer-madeby,
+  .footer-contact {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .footer-contact {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+  
+  .footer-icons {
+    margin-top: 20px;
+  }
+  
+  .footer-icons a {
+    color: inherit; /* Usamos los colores por defecto para los íconos */
+    margin: 0 15px;
+    transition: color 0.3s;
+  }
+  
+  .footer-icons a.whatsapp {
+    color: #25D366; /* Color original de WhatsApp */
+  }
+  
+  .footer-icons a.linkedin {
+    color: #0077b5; /* Color original de LinkedIn */
+  }
+  
+  .footer-icons a.github {
+    color: #333; /* Color original de GitHub */
+  }
+  
+  .footer-icons a:hover {
+    opacity: 0.7; /* Efecto hover en los íconos */
+  }
+  
+  .footer-icons svg {
+    vertical-align: middle;
+  }
+  
+  
+  /* Estilos responsivos para móviles */
+  @media (max-width: 768px) {
+    .menu-container {
+      padding: 1rem;
+      padding-top: 150px; /* Ajustamos el margen superior en móviles */
+    }
+  
+    .logo {
+      width: 100px; /* Ajustamos el tamaño del logo en dispositivos móviles */
+    }
+  
+    .menu-header {
+      font-size: 1.8rem; /* Reducimos el tamaño del título en móviles */
+    }
+  
+    .language-button {
+      padding: 8px 16px; /* Botón más pequeño en móviles */
+      font-size: 0.9rem;  /* Fuente del botón más pequeña */
+      margin-right: 30px; /* Espacio suficiente para el botón en móviles */
+    }
+  }
+  .whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #25D366; /* Color verde de WhatsApp */
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.whatsapp-link:hover {
+    color: #128C7E; /* Color más oscuro en hover */
+}
+
+.whatsapp-icon {
+    margin-right: 10px;
+}
+
+.footer-container p {
+    margin: 0;
+    font-size: 1rem;
+    color: #2a7f62;
+}
+.footer-container {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco semi-transparente */
+  padding: 20px 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  right: 10px;
+}
+
+/* Estilo para el texto "Desarrollado por" */
+.footer-made-by {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2a7f62;
+  font-weight: 600;
+}
+
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #25D366;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.whatsapp-link:hover {
+  color: #128C7E; /* Color más oscuro en hover */
+}
+
+.whatsapp-icon {
+  margin-right: 10px;
+}
+
+.footer-container {
+  padding: 30px 10px;
+}
+
+.footer-madeby,
+.footer-contact {
+  font-size: 1rem;
+}
+
+.footer-contact {
+  font-size: 1.2rem;
+}
+
+.footer-icons a {
+  margin: 0 10px;
+}
+
+

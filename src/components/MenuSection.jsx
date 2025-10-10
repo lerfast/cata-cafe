@@ -1,41 +1,36 @@
-// src/components/MenuSection.js
 import React from 'react';
-import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import MenuItem from './MenuItem';
 
-const SectionTitle = styled.h2`
-  margin: 2rem auto 1rem auto;  /* Auto en los márgenes izquierda y derecha para centrar */
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #2a7f62;
-  text-align: center;
-  background: rgba(230, 228, 228, 0.6);
-  width: fit-content;  /* Asegura que el contenedor se ajuste al contenido */
-  padding: 0.5rem 1rem; /* Añade un padding para un mejor ajuste */
-  border-radius: 8px;   /* Bordes redondeados */
-`;
+const MenuSection = ({ id, title, items, currencyFormatter, query = '' }) => {
+  if (!items || items.length === 0) return null;
 
-
-
-const MenuSectionContainer = styled.div`
-  margin-bottom: 2rem;
-`;
-
-const ItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const MenuSection = ({ title, items }) => {
   return (
-    <MenuSectionContainer>
-      <SectionTitle>{title}</SectionTitle>
-      <ItemContainer>
-        {items.map((item, index) => (
-          <MenuItem key={index} name={item.name} price={item.price} />
+    <section id={id} className="scroll-mt-28 mb-10" aria-labelledby={`${id}-title`}>
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5 }}
+        className="mx-auto mb-5 w-fit rounded-full bg-white/85 px-5 py-2 text-center shadow"
+      >
+        <h3 id={`${id}-title`} className="text-lg md:text-xl font-extrabold bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">
+          {title}
+        </h3>
+      </motion.div>
+
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        {items.map((item, idx) => (
+          <MenuItem
+            key={`${id}-${idx}`}
+            name={item.name}
+            price={item.price}
+            currencyFormatter={currencyFormatter}
+            query={query}
+          />
         ))}
-      </ItemContainer>
-    </MenuSectionContainer>
+      </div>
+    </section>
   );
 };
 

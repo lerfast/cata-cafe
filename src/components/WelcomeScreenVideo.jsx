@@ -1,39 +1,19 @@
-// src/components/WelcomeScreen.jsx
+// src/components/WelcomeScreenVideo.jsx
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import backgroundImage from '../assets/background.png';
+import { motion, useReducedMotion } from 'framer-motion';
+import videoMP4 from '../assets/';
 import logo from '../assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
-// Variantes de animación
 const fadeIn = (delay = 0) => ({
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { delay, duration: 0.8, ease: 'easeOut' } },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { delay, duration: 0.7, ease: 'easeOut' } },
 });
+const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
 
-const stagger = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-// Pequeño ícono/figura de “grano de café” en SVG
-const CoffeeBean = ({ className = '' }) => (
-  <svg
-    viewBox="0 0 64 64"
-    className={className}
-    fill="currentColor"
-    aria-hidden="true"
-  >
-    <path d="M45.6 10.7C39.7 4.8 30.4 4.8 24.5 10.7c-5.9 5.9-5.9 15.2 0 21.1 5.9 5.9 15.2 5.9 21.1 0 5.9-5.9 5.9-15.2 0-21.1zM21.7 32.8c-3.9-7.3-3-16.6 3.2-22.8 6.2-6.2 15.6-7 22.8-3.2-2.1 1.1-4.6 2.8-7.2 5.4-7.2 7.2-11.8 15.7-18.8 20.6z" />
-  </svg>
-);
-
-const WelcomeScreen = ({ onProceed }) => {
+const WelcomeScreenVideo = ({ onProceed }) => {
+  const prefersReducedMotion = useReducedMotion();
   const [language, setLanguage] = useState('es');
   const [visitCount, setVisitCount] = useState(0);
   const hasIncremented = useRef(false);
@@ -48,15 +28,13 @@ const WelcomeScreen = ({ onProceed }) => {
     }
   }, []);
 
-  const toggleLanguage = () => setLanguage((l) => (l === 'es' ? 'en' : 'es'));
-
   const texts = {
     es: {
       welcome: '¡Bienvenido a Cata Café!',
       subtext:
-        'Donde cada taza de café cuenta una historia. Relájate, disfruta y descubre nuestras especialidades preparadas con pasión.',
+        'Cada taza cuenta una historia. Descubre nuestras especialidades preparadas con pasión.',
       button: 'Ver el Menú',
-      address: 'Nos encontramos en la Calle 12 # 5-45, Neiva, Huila, Colombia.',
+      address: 'Calle 12 # 5-45, Neiva, Huila, Colombia.',
       followUs: 'Síguenos:',
       whatsapp: 'Para pedidos',
       lang: 'English',
@@ -64,9 +42,9 @@ const WelcomeScreen = ({ onProceed }) => {
     en: {
       welcome: 'Welcome to Cata Café!',
       subtext:
-        'Where every cup of coffee tells a story. Relax, enjoy, and discover our specialties crafted with passion.',
+        'Every cup tells a story. Discover our specialties crafted with passion.',
       button: 'View the Menu',
-      address: 'We are located at Calle 12 # 5-45, Neiva, Huila, Colombia.',
+      address: 'Calle 12 # 5-45, Neiva, Huila, Colombia.',
       followUs: 'Follow us:',
       whatsapp: 'For orders',
       lang: 'Español',
@@ -74,54 +52,29 @@ const WelcomeScreen = ({ onProceed }) => {
   };
 
   return (
-    <div
-      className="relative min-h-screen w-full bg-cover bg-center"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      {/* Capa oscura principal para legibilidad */}
-      <div className="absolute inset-0 bg-black/50" />
+    <div className="relative min-h-screen w-full overflow-hidden bg-black">
+      {/* Video background */}
+      {!prefersReducedMotion && (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={videoMP4}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      )}
 
-      {/* Gradientes radiales sutiles (decor) */}
+      {/* Overlay para contraste */}
+      <div className="absolute inset-0 bg-black/45" />
+
+      {/* Grain sutil */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 pointer-events-none
-        [background:radial-gradient(60%_40%_at_12%_10%,rgba(250,204,21,0.18),transparent),
-                    radial-gradient(45%_55%_at_85%_15%,rgba(99,102,241,0.16),transparent)]"
-      />
-
-      {/* Patrón finísimo como “grano”/ruido */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 opacity-10 pointer-events-none
+        className="absolute inset-0 pointer-events-none opacity-10
         [background:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.6)_1px,transparent_0)]
         [background-size:14px_14px]"
       />
-
-      {/* Beans flotando (decorativos) */}
-      <motion.div
-        className="absolute left-6 top-16 text-amber-400/70"
-        initial={{ y: 0, rotate: -10 }}
-        animate={{ y: [-8, 8, -8], rotate: [-10, -2, -10] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      >
-        <CoffeeBean className="h-8 w-8" />
-      </motion.div>
-      <motion.div
-        className="absolute right-10 top-24 text-amber-300/60"
-        initial={{ y: 0, rotate: 8 }}
-        animate={{ y: [10, -10, 10], rotate: [8, 0, 8] }}
-        transition={{ duration: 9, repeat: Infinity }}
-      >
-        <CoffeeBean className="h-6 w-6" />
-      </motion.div>
-      <motion.div
-        className="absolute bottom-20 left-14 text-amber-200/60"
-        initial={{ y: 0, rotate: 0 }}
-        animate={{ y: [-6, 6, -6], rotate: [0, 6, 0] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      >
-        <CoffeeBean className="h-7 w-7" />
-      </motion.div>
 
       {/* Contenido */}
       <motion.div
@@ -133,35 +86,30 @@ const WelcomeScreen = ({ onProceed }) => {
         {/* Botón idioma */}
         <motion.button
           className="absolute right-4 top-4 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
-          onClick={toggleLanguage}
+          onClick={() => setLanguage((l) => (l === 'es' ? 'en' : 'es'))}
           variants={fadeIn(0.05)}
           whileTap={{ scale: 0.95 }}
         >
-          {texts[language].lang}
+          {language === 'es' ? 'English' : 'Español'}
         </motion.button>
 
-        {/* “Tarjeta” principal (glass) */}
+        {/* Card */}
         <motion.div
-          className="w-full max-w-3xl rounded-3xl bg-white/10 px-6 py-8 md:px-10 md:py-10 backdrop-blur-lg shadow-2xl ring-1 ring-white/10"
+          className="w-full max-w-3xl rounded-3xl bg-white/10 px-6 py-8 md:px-10 md:py-10 backdrop-blur-xl shadow-2xl ring-1 ring-white/10"
           variants={fadeIn(0.1)}
         >
-          {/* Logo */}
           <motion.img
             src={logo}
             alt="Cata Café Logo"
-            className="mx-auto mb-6 w-[220px] md:w-[260px] rounded-2xl bg-white/10 p-3 shadow-xl ring-1 ring-white/10"
+            className="mx-auto mb-6 max-w-[260px] w-auto h-auto rounded-2xl bg-white/10 p-3 shadow-xl ring-1 ring-white/10"
             variants={fadeIn(0.15)}
           />
-
-          {/* Título con degradado */}
           <motion.h1
             className="mx-auto max-w-2xl bg-gradient-to-r from-amber-300 via-white to-amber-200 bg-clip-text text-4xl font-extrabold text-transparent md:text-5xl"
             variants={fadeIn(0.2)}
           >
             {texts[language].welcome}
           </motion.h1>
-
-          {/* Subtexto */}
           <motion.p
             className="mx-auto mt-4 max-w-2xl text-base text-white/90 md:text-lg"
             variants={fadeIn(0.3)}
@@ -169,7 +117,6 @@ const WelcomeScreen = ({ onProceed }) => {
             {texts[language].subtext}
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
             className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
             variants={fadeIn(0.35)}
@@ -232,7 +179,7 @@ const WelcomeScreen = ({ onProceed }) => {
           </div>
         </motion.div>
 
-        {/* Contador de visitas (discreto, no interfiere) */}
+        {/* Contador de visitas */}
         <div className="pointer-events-none fixed bottom-2 right-2 opacity-80 hover:opacity-100 transition">
           <a
             href="https://www.hitwebcounter.com"
@@ -254,4 +201,4 @@ const WelcomeScreen = ({ onProceed }) => {
   );
 };
 
-export default WelcomeScreen;
+export default WelcomeScreenVideo;

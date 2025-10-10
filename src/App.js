@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import WelcomeScreen from './components/WelcomeScreen';
-import Menu from './components/Menu'; // Importamos el nuevo componente Menu
+import WelcomeScreenKenBurns from './components/WelcomeScreenKenBurns'; // <- O WelcomeScreenVideo
+import Menu from './components/Menu';
 
 const App = () => {
-  const [showMenu, setShowMenu] = useState(false); // Estado para manejar el menú
-
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <>
       {!showMenu ? (
-        <WelcomeScreen onProceed={() => setShowMenu(true)} />
+        <WelcomeScreenKenBurns onProceed={() => setShowMenu(true)} />
+        // <WelcomeScreenVideo onProceed={() => setShowMenu(true)} />
       ) : (
-        <Menu /> 
+        <Menu />
       )}
     </>
   );

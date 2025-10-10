@@ -1,6 +1,10 @@
-// src/components/WelcomeScreen.jsx
+// src/components/WelcomeScreenKenBurns.jsx
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+} from 'framer-motion';
 import backgroundImage from '../assets/background.png';
 import logo from '../assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,36 +12,28 @@ import { faWhatsapp, faFacebook, faInstagram } from '@fortawesome/free-brands-sv
 
 // Variantes de animación
 const fadeIn = (delay = 0) => ({
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0, transition: { delay, duration: 0.8, ease: 'easeOut' } },
 });
-
 const stagger = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.12 } },
 };
 
-// Pequeño ícono/figura de “grano de café” en SVG
+// Bean decorativo (SVG)
 const CoffeeBean = ({ className = '' }) => (
-  <svg
-    viewBox="0 0 64 64"
-    className={className}
-    fill="currentColor"
-    aria-hidden="true"
-  >
+  <svg viewBox="0 0 64 64" className={className} fill="currentColor" aria-hidden="true">
     <path d="M45.6 10.7C39.7 4.8 30.4 4.8 24.5 10.7c-5.9 5.9-5.9 15.2 0 21.1 5.9 5.9 15.2 5.9 21.1 0 5.9-5.9 5.9-15.2 0-21.1zM21.7 32.8c-3.9-7.3-3-16.6 3.2-22.8 6.2-6.2 15.6-7 22.8-3.2-2.1 1.1-4.6 2.8-7.2 5.4-7.2 7.2-11.8 15.7-18.8 20.6z" />
   </svg>
 );
 
-const WelcomeScreen = ({ onProceed }) => {
+const WelcomeScreenKenBurns = ({ onProceed }) => {
+  const prefersReducedMotion = useReducedMotion();
   const [language, setLanguage] = useState('es');
   const [visitCount, setVisitCount] = useState(0);
   const hasIncremented = useRef(false);
 
+  // contador local (opcional)
   useEffect(() => {
     if (!hasIncremented.current) {
       const visits = localStorage.getItem('visitCount');
@@ -73,35 +69,81 @@ const WelcomeScreen = ({ onProceed }) => {
     },
   };
 
+  // Parallax 3D con el mouse (sutil y elegante)
+  const cardRef = useRef(null);
+  const tiltX = useMotionValue(0); // rotateX
+  const tiltY = useMotionValue(0); // rotateY
+  const handleMouseMove = (e) => {
+    if (!cardRef.current || prefersReducedMotion) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width * 2 - 1;  // -1 .. 1
+    const py = (e.clientY - rect.top)  / rect.height * 2 - 1; // -1 .. 1
+    tiltY.set(px * 8);
+    tiltX.set(-py * 8);
+  };
+  const resetTilt = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+  };
+
+  // Vapor de café (burbujas sutiles)
+  const Steam = () => {
+    const bubbles = Array.from({ length: 6 });
+    return (
+      <div className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 h-16 w-24 overflow-visible">
+        {bubbles.map((_, i) => {
+          const delay = i * 0.9;
+          const left = 10 + (i % 3) * 20; // posiciones horizontales
+          const size = 10 + (i % 4) * 4;
+          return (
+            <motion.span
+              key={i}
+              className="absolute bottom-0 rounded-full bg-white/40 blur-[2px]"
+              style={{ left, width: size, height: size }}
+              initial={{ y: 0, opacity: 0, scale: 0.8 }}
+              animate={prefersReducedMotion ? {} : { y: -64, opacity: [0, 0.8, 0], scale: [0.8, 1.25, 1.35] }}
+              transition={{ duration: 3.8, delay, repeat: Infinity, ease: 'easeOut' }}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
   return (
-    <div
-      className="relative min-h-screen w-full bg-cover bg-center"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      {/* Capa oscura principal para legibilidad */}
-      <div className="absolute inset-0 bg-black/50" />
-
-      {/* Gradientes radiales sutiles (decor) */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none
-        [background:radial-gradient(60%_40%_at_12%_10%,rgba(250,204,21,0.18),transparent),
-                    radial-gradient(45%_55%_at_85%_15%,rgba(99,102,241,0.16),transparent)]"
+    <div className="relative min-h-screen w-full overflow-hidden">
+      {/* Fondo con efecto Ken Burns */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+        initial={false}
+        animate={
+          prefersReducedMotion
+            ? {}
+            : { scale: [1, 1.06, 1], x: [0, -10, 0], y: [0, -10, 0] }
+        }
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
       />
-
-      {/* Patrón finísimo como “grano”/ruido */}
+      {/* Overlays para legibilidad + textura */}
+      <div className="absolute inset-0 bg-black/55" />
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-10 pointer-events-none
+        className="absolute inset-0 pointer-events-none opacity-70
+                [background:radial-gradient(60%_40%_at_12%_10%,rgba(250,204,21,0.16),transparent),
+                            radial-gradient(45%_55%_at_85%_15%,rgba(99,102,241,0.14),transparent)]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none opacity-10
         [background:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.6)_1px,transparent_0)]
         [background-size:14px_14px]"
       />
 
-      {/* Beans flotando (decorativos) */}
+      {/* Beans flotando */}
       <motion.div
         className="absolute left-6 top-16 text-amber-400/70"
         initial={{ y: 0, rotate: -10 }}
-        animate={{ y: [-8, 8, -8], rotate: [-10, -2, -10] }}
+        animate={prefersReducedMotion ? {} : { y: [-8, 8, -8], rotate: [-10, -2, -10] }}
         transition={{ duration: 8, repeat: Infinity }}
       >
         <CoffeeBean className="h-8 w-8" />
@@ -109,7 +151,7 @@ const WelcomeScreen = ({ onProceed }) => {
       <motion.div
         className="absolute right-10 top-24 text-amber-300/60"
         initial={{ y: 0, rotate: 8 }}
-        animate={{ y: [10, -10, 10], rotate: [8, 0, 8] }}
+        animate={prefersReducedMotion ? {} : { y: [10, -10, 10], rotate: [8, 0, 8] }}
         transition={{ duration: 9, repeat: Infinity }}
       >
         <CoffeeBean className="h-6 w-6" />
@@ -117,7 +159,7 @@ const WelcomeScreen = ({ onProceed }) => {
       <motion.div
         className="absolute bottom-20 left-14 text-amber-200/60"
         initial={{ y: 0, rotate: 0 }}
-        animate={{ y: [-6, 6, -6], rotate: [0, 6, 0] }}
+        animate={prefersReducedMotion ? {} : { y: [-6, 6, -6], rotate: [0, 6, 0] }}
         transition={{ duration: 10, repeat: Infinity }}
       >
         <CoffeeBean className="h-7 w-7" />
@@ -133,27 +175,38 @@ const WelcomeScreen = ({ onProceed }) => {
         {/* Botón idioma */}
         <motion.button
           className="absolute right-4 top-4 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
-          onClick={toggleLanguage}
+          onClick={() => setLanguage((l) => (l === 'es' ? 'en' : 'es'))}
           variants={fadeIn(0.05)}
           whileTap={{ scale: 0.95 }}
         >
-          {texts[language].lang}
+          {language === 'es' ? 'English' : 'Español'}
         </motion.button>
 
-        {/* “Tarjeta” principal (glass) */}
+        {/* Tarjeta principal con tilt/parallax */}
         <motion.div
-          className="w-full max-w-3xl rounded-3xl bg-white/10 px-6 py-8 md:px-10 md:py-10 backdrop-blur-lg shadow-2xl ring-1 ring-white/10"
+          ref={cardRef}
+          className="relative w-full max-w-3xl rounded-3xl bg-white/10 px-6 py-8 md:px-10 md:py-10 backdrop-blur-lg shadow-2xl ring-1 ring-white/10 will-change-transform"
           variants={fadeIn(0.1)}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={resetTilt}
+          style={{
+            transformPerspective: 900,
+            rotateX: tiltX,
+            rotateY: tiltY,
+          }}
         >
-          {/* Logo */}
+          {/* Vapor */}
+          {!prefersReducedMotion && <Steam />}
+
+          {/* Logo — sin deformarlo */}
           <motion.img
             src={logo}
             alt="Cata Café Logo"
-            className="mx-auto mb-6 w-[220px] md:w-[260px] rounded-2xl bg-white/10 p-3 shadow-xl ring-1 ring-white/10"
+            className="mx-auto mb-6 max-w-[260px] w-auto h-auto rounded-2xl bg-white/10 p-3 shadow-xl ring-1 ring-white/10"
             variants={fadeIn(0.15)}
           />
 
-          {/* Título con degradado */}
+          {/* Título gradient */}
           <motion.h1
             className="mx-auto max-w-2xl bg-gradient-to-r from-amber-300 via-white to-amber-200 bg-clip-text text-4xl font-extrabold text-transparent md:text-5xl"
             variants={fadeIn(0.2)}
@@ -200,12 +253,13 @@ const WelcomeScreen = ({ onProceed }) => {
         </motion.div>
 
         {/* Dirección */}
-        <motion.p
-          className="mt-6 rounded-lg bg-black/30 px-3 py-2 text-xs md:text-sm backdrop-blur ring-1 ring-white/10"
-          variants={fadeIn(0.45)}
-        >
-          {texts[language].address}
-        </motion.p>
+       <motion.p
+  className="mt-6 rounded-xl bg-black/35 px-4 py-2.5 text-sm md:text-base lg:text-lg font-medium backdrop-blur ring-1 ring-white/10"
+  variants={fadeIn(0.45)}
+>
+  {texts[language].address}
+</motion.p>
+
 
         {/* Redes */}
         <motion.div className="mt-6" variants={fadeIn(0.5)}>
@@ -232,7 +286,7 @@ const WelcomeScreen = ({ onProceed }) => {
           </div>
         </motion.div>
 
-        {/* Contador de visitas (discreto, no interfiere) */}
+        {/* Contador de visitas (discreto) */}
         <div className="pointer-events-none fixed bottom-2 right-2 opacity-80 hover:opacity-100 transition">
           <a
             href="https://www.hitwebcounter.com"
@@ -254,4 +308,4 @@ const WelcomeScreen = ({ onProceed }) => {
   );
 };
 
-export default WelcomeScreen;
+export default WelcomeScreenKenBurns;
